@@ -25,11 +25,21 @@ services:
     depends_on:
       - keycloak-db
 
-  #  frontend:
-  #    build:
-  #      context: fronted
-  #    depends_on:
-  #      - keycloak
+  frontend:
+    build: 
+      context: frontend/simple-auth
+      dockerfile: ../Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXTAUTH_SECRET=eo7z7W5framDrmBnagBhhB2u0rNdKsMCAWNDW4s+z1o+1Hs3kKHsmVVnH0LjfxzUoukdnp/ySZrE/i+lEFgObA==
+      - NEXTAUTH_URL=http://localhost:3000
+      - KEYCLOAK_ID=frontend
+      - KEYCLOAK_SECRET=DhWehPMwcs53HIGLj9LU36JIBxTfLYoq
+      - KEYCLOAK_ISSUER=https://keycloak:8443/realms/sample-app
+      - NODE_TLS_REJECT_UNAUTHORIZED=0
+    depends_on:
+      - keycloak
 
   # backend:
   #  build:
