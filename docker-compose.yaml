@@ -1,14 +1,38 @@
 version: "3.9"
 
 services:
+  keycloak-db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=keycloak
+
   keycloak:
-    build:
-      context: keycloak
+    build: keycloak
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    environment:
+      - KC_DB=postgres
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=root
+      - KC_DB_URL=jdbc:postgresql://keycloak-db/keycloak
+      - KC_HOSTNAME=localhost
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    command: start --optimized
+    depends_on:
+      - keycloak-db
 
-  frontend:
-    build:
-      context: fronted
+  #  frontend:
+  #    build:
+  #      context: fronted
+  #    depends_on:
+  #      - keycloak
 
-  backend:
-    build:
-      context: backend
+  # backend:
+  #  build:
+  #    context: backend
+  #  depends_on:
+  #    - keycloak
