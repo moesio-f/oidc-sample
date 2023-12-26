@@ -15,6 +15,7 @@ declare module "next-auth" {
         tokens: {
             access: string
             id: string
+            refresh: string
         }
         expires: Date
     }

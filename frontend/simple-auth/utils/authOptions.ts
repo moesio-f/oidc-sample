@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
             if (account) {
                 token.access_token = account.access_token
                 token.id_token = account.id_token
+                token.refresh_token = account.refresh_token
                 token.id = profile?.sub
             }
 
@@ -23,10 +24,10 @@ export const authOptions: NextAuthOptions = {
         async session({ session, token, user }: SessionCallback) {
             session.tokens = {
                 access: token.access_token as string,
-                id: token.id_token as string
+                id: token.id_token as string,
+                refresh: token.refresh_token as string
             }
             session.user.id = token.id as string
-
             return session
         }
     },

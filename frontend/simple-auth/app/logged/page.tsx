@@ -38,6 +38,14 @@ export default async function LoggedPage() {
 						labelPlacement="outside"
 						defaultValue={session.tokens.id}
 					/>
+					<Textarea
+						isReadOnly
+						variant="flat"
+						color="secondary"
+						label="Refresh"
+						labelPlacement="outside"
+						defaultValue={session.tokens.refresh}
+					/>
 				</div>
 			</section>
 		);
