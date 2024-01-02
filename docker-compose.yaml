@@ -21,7 +21,7 @@ services:
       - KC_HOSTNAME=localhost
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-    command: start --optimized
+    command: start --import-realm --optimized
     depends_on:
       - keycloak-db
 
@@ -35,7 +35,7 @@ services:
       - NEXTAUTH_SECRET=eo7z7W5framDrmBnagBhhB2u0rNdKsMCAWNDW4s+z1o+1Hs3kKHsmVVnH0LjfxzUoukdnp/ySZrE/i+lEFgObA==
       - NEXTAUTH_URL=http://localhost:3000
       - KEYCLOAK_ID=frontend
-      - KEYCLOAK_SECRET=DhWehPMwcs53HIGLj9LU36JIBxTfLYoq
+      - KEYCLOAK_SECRET=BFa22wSJrr3cNKh4kEtqFQDe6vgrvxxK
       - KEYCLOAK_ISSUER=https://keycloak:8443/realms/sample-app
       - NODE_TLS_REJECT_UNAUTHORIZED=0
     depends_on:

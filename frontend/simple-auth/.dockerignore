@@ -1,0 +1,9 @@
+# This is a blacklist file
+.git
+.results
+scripts
+*Dockerfile*
+node_modules
+.env
+.next
+npm-debug.log
