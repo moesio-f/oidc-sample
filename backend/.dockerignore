@@ -1,0 +1,14 @@
+# This is a blacklist file
+README.md
+**/__pycache__/
+**/*.py[cod]
+.Python
+env/
+build/
+dist/
+eggs/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.log
