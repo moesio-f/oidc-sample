@@ -15,6 +15,15 @@ export const siteConfig = {
 		{
 			label: "User",
 			href: "/logged",
-		}
+		},
+        {
+            label: "Public API",
+            href: "/public"
+        },
+        {
+            label: "Private API",
+            href: "/private"
+        }
 	]
 };
+

@@ -29,20 +29,35 @@ services:
     build: 
       context: frontend/simple-auth
       dockerfile: ../Dockerfile
+      args:
+        - NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
     ports:
       - "3000:3000"
     environment:
       - NEXTAUTH_SECRET=eo7z7W5framDrmBnagBhhB2u0rNdKsMCAWNDW4s+z1o+1Hs3kKHsmVVnH0LjfxzUoukdnp/ySZrE/i+lEFgObA==
       - NEXTAUTH_URL=http://localhost:3000
       - KEYCLOAK_ID=frontend
-      - KEYCLOAK_SECRET=BFa22wSJrr3cNKh4kEtqFQDe6vgrvxxK
+      - KEYCLOAK_SECRET=YVZqy16Bh380Ndnx6DL9YroAUIC7Z1X0
       - KEYCLOAK_ISSUER=https://keycloak:8443/realms/sample-app
       - NODE_TLS_REJECT_UNAUTHORIZED=0
     depends_on:
       - keycloak
 
-  # backend:
-  #  build:
-  #    context: backend
-  #  depends_on:
-  #    - keycloak
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - OIDC_RP_CLIENT_ID=backend
+      - OIDC_RP_CLIENT_SECRET=BFa22wSJrr3cNKh4kEtqFQDe6vgrvxxK
+      - OIDC_OP_AUTHORIZATION_ENDPOINT=https://keycloak:8443/realms/sample-app/protocol/openid-connect/auth
+      - OIDC_OP_TOKEN_ENDPOINT=https://keycloak:8443/realms/sample-app/protocol/openid-connect/token
+      - OIDC_OP_USER_ENDPOINT=https://keycloak:8443/realms/sample-app/protocol/openid-connect/userinfo
+      - OIDC_RP_SIGN_ALGO=HS256
+      - DJANGO_SECRET_KEY=sLsCsmTOq+3DMMyE+YA2o4kGqZl64Nb2Qftz+ilx59wgl1g1Cehy+gwRdI/MaF1Fk0uR+eJ5Bgu2V6uUsiuPzg==
+      - DJANGO_DEBUG=true
+    depends_on:
+      - keycloak
+

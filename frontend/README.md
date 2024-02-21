@@ -30,3 +30,5 @@ The current version doesn't have the full capabilities for a production-ready co
 - Add a middleware to use the refresh token (if provided) when the current one expires;
 - Add page to test an authenticated endpoint of the backend;
   - Create a generic utility to format the request with the necessary tokens;
+- End keycloak session in sign-out by redirecting to the logout URL of OIDC;
+- Change backend URL from hard-coded to environment variable;

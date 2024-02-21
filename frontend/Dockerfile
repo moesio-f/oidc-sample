@@ -18,6 +18,8 @@ RUN \
 
 # ==== BUILDER ====
 FROM base AS builder
+ARG NEXT_PUBLIC_BACKEND_URL
+ENV NEXT_PUBLIC_BACKEND_URL $NEXT_PUBLIC_BACKEND_URL
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
